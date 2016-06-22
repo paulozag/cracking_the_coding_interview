@@ -1,0 +1,1 @@
+These are the algorithms from the book cracking the coding interview.  While I am most proficient at Ruby, I want to do these algorithms in JS as well (I need the practice!)

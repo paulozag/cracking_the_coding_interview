@@ -1,0 +1,2 @@
+Question 1.5
+Implement a method to perform basic strinnng compression usinng the counts of repeated characters.  for examplek the string 'aabcccccaaa' would become 'a2b1c5a3'.  if the compressed string ends up being longer than the original string, return the original string.
