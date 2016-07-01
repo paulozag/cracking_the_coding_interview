@@ -1,0 +1,30 @@
+=begin
+  iterate through sucessive 'layers' of the matrix
+    for every element in the top row create a 4 way shift, top element moves to
+    right side, right side to bottom, bottom element to left, and
+    left (saved in a temp) to top.
+
+  setting the algorithm to process the layer by layer sequence is the trick
+
+=end
+
+def rotate array
+  return -1 unless valid_n_by_n? array
+end
+
+
+def valid_n_by_n? array
+  depth = array.length
+  for row in array
+    return false unless row.length == depth
+  end
+  true
+end
+
+def create_matrix size
+  arr = []
+  (1..size).each do |row|
+    arr_row = []
+    (1..size).each do |col|
+      arr_row << "col: #{}"
+end
