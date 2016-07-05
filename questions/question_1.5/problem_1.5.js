@@ -10,8 +10,8 @@ var string_compressor = function(expression){
       prev_char = expression[index]
     }
   }
-  console.log('new_expression length:' + new_expression.length)
-  console.log('orig expression length:' + expression.length)
+  // console.log('new_expression length:' + new_expression.length)
+  // console.log('orig expression length:' + expression.length)
 
   if (new_expression.length < expression.length){
     return new_expression.join('');
