@@ -26,5 +26,21 @@ def create_matrix size
   (1..size).each do |row|
     arr_row = []
     (1..size).each do |col|
-      arr_row << "col: #{}"
+      arr_row << "row:#{row} col:#{col}   "
+    end
+    arr << arr_row
+  end
+  arr
 end
+
+def display_matrix matrix
+  matrix.each_with_index do |row, row_index|
+    line = ''
+    row.each_with_index { |col, col_index| line += matrix[row_index][col_index]}
+    p line
+  end
+
+end
+
+mat = create_matrix 3
+display_matrix mat
