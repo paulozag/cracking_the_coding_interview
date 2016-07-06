@@ -29,9 +29,6 @@ def rotate array
   end
 end
 
-def rotateable? array
-end
-
 def valid_n_by_n? array
   depth = array.length
   for row in array
@@ -60,8 +57,8 @@ def display_matrix matrix
   end
 end
 
-mat = create_matrix 4
+mat = create_matrix 11
 display_matrix mat
-rotate mat
+1.times {rotate mat}
 p "*"*120
 display_matrix mat
