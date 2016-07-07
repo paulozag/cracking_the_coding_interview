@@ -13,7 +13,7 @@ var createNByNMatrix = function(size){
 var isValidNByN = function(arr){
   var depth = arr.length
   for (var i = 0; i < arr.length; i++){
-    console.log(arr[i].length + '   ' + depth)
+    // console.log(arr[i].length + '   ' + depth)
     if (arr[i].length != depth){
       return false;
     }
@@ -21,6 +21,13 @@ var isValidNByN = function(arr){
   return true;
 };
 
+var displayMatrix = function(arr){
+  for (i in arr){
+    console.log(arr[i].join(' '));
+  }
+};
+
 mat = createNByNMatrix(5)
 // console.log(mat[1].length)
 console.log(isValidNByN(mat))
+displayMatrix(mat)
