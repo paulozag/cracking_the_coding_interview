@@ -57,7 +57,7 @@ def display_matrix matrix
   end
 end
 
-mat = create_matrix 11
+mat = create_matrix 9
 display_matrix mat
 1.times {rotate mat}
 p "*"*120
