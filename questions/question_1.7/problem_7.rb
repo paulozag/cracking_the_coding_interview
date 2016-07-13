@@ -1,15 +1,14 @@
-class N_by_n
-
-  attr_accessor :array
+class Row_col_if_zero
 
   def initialize options={}
-    @array = options[:array] || (generate_array options)
-
+    @initialization_options = options
+    @array = options[:array] || generate_array
   end
 
+
   private
-  def generate_array options
-    size = options[:size] || 5
+  def generate_array
+    size = @initialization_options[:size] || 5
     create_matrix size
   end
 
@@ -18,22 +17,13 @@ class N_by_n
     (1..size).each do |row|
       arr_row = []
       (1..size).each do |col|
-        arr_row << Array_element.new
+        arr_row << rand(0..9)
       end
       arr << arr_row
     end
     arr
   end
+
 end
 
-class Array_element
-  def initialize options={}
-    @value = options[:value] || (rand (0..9))
-    @zero_out = false
-  end
-
-  private
-end
-
-test = N_by_n.new
-p test
+x = Row_col_if_zero.new
