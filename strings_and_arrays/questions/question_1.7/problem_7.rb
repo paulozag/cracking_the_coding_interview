@@ -15,12 +15,12 @@ class Row_col_if_zero
 
   def display_matrix
     for row in @array
-      p "/n"
+      string_arr = []
       for element in row
-        print element
+        string_arr << element
       end
+      p string_arr.join('')
     end
-    p "/n"
   end
 
   private
