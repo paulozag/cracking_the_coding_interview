@@ -18,13 +18,10 @@ LinkedList.prototype.viewList = function(){
 
 LinkedList.prototype.lastElement = function(){
   if (this.head){
-    // console.log('head: ' + this.head.value)
     var current = this.head
     while (current.next){
-      // console.log('in loop')
       current = current.next
     }
-    // console.log('current value after while loop' + current.value)
     return current;
   }
   return null
@@ -35,11 +32,44 @@ LinkedList.prototype.addNode = function(node){
   lastNode.next = node
 }
 
+LinkedList.prototype.removeNode = function(node){
+  if (node == this.head){
+    var temp = this.head
+    this.head = this.head.next
+    return temp
+  }
+  var runner = this.head.next
+  var previous = this.head
+
+  while (runner){
+    if (runner = node){
+      previous.next = runner.next
+      return runner
+    }
+    previous = runner
+    runner = runner.next
+  }
+}
+
+LinkedList.prototype.removeDuplicates = function(){
+  var duplicatesHash = {}
+  runner = this.head
+  // while (runner){
+
+  // }
+}
+
 var x = new LinkedList(new Node(5))
+var y = new Node(2)
+x.addNode(y)
 x.addNode(new Node(4))
 x.addNode(new Node(3))
 x.viewList()
-console.log( 'value of last element: ' + x.lastElement().value)
+var removed = x.removeNode(y)
+console.log(removed.value)
+x.viewList()
+
+// console.log( 'value of last element: ' + x.lastElement().value)
 // console.log(x.lastNode)
 // console.log(x.value)
 // x.value = 3
