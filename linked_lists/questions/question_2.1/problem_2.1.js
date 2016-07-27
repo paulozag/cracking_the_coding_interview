@@ -13,3 +13,18 @@ LinkedList.prototype.removeDuplicates = function(){
   }
 }
 
+LinkedList.prototype.removeDuplicatesNoBuffer = function(){
+  var current = this.head
+  while (current){
+    findAndRemoveDups (current, this)
+    current = current.next
+  }
+}
+
+var findAndRemoveDups = function(targetNode, classInstance){
+  var runner = targetNode.next
+  while (runner){
+    if (runner.value == targetNode.value){ classInstance.removeNode(runner)}
+    runner = runner.next
+  }
+}
