@@ -75,6 +75,22 @@ LinkedList.prototype.removeDuplicates = function(){
   }
 }
 
+LinkedList.prototype.removeDuplicatesNoBuffer = function(){
+  var current = this.head
+  while (current){
+    findAndRemoveDups (current, this)
+    current = current.next
+  }
+}
+
+var findAndRemoveDups = function(targetNode, classInstance){
+  var runner = targetNode.next
+  while (runner){
+    if (runner.value == targetNode.value){ classInstance.removeNode(runner)}
+    runner = runner.next
+  }
+}
+
 
 
 
@@ -86,6 +102,6 @@ for (var index = 0; index < x.length; index++){
 
 list.viewList()
 console.log('XXXXXXXXXXX')
-list.removeDuplicates()
+list.removeDuplicatesNoBuffer()
 list.viewList()
 
