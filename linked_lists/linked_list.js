@@ -32,6 +32,16 @@ LinkedList.prototype.addNode = function(node){
   lastNode.next = node
 }
 
+LinkedList.prototype.length = function(){
+  var count = 0
+  var runner = this.head
+  while (runner){
+    count++
+    runner = runner.next
+  }
+  return count
+}
+
 LinkedList.prototype.removeNode = function(node){
   if (node == this.head){
     var temp = this.head
@@ -42,7 +52,7 @@ LinkedList.prototype.removeNode = function(node){
   var previous = this.head
 
   while (runner){
-    if (runner = node){
+    if (runner == node){
       previous.next = runner.next
       return runner
     }
@@ -51,26 +61,31 @@ LinkedList.prototype.removeNode = function(node){
   }
 }
 
+
 LinkedList.prototype.removeDuplicates = function(){
   var duplicatesHash = {}
   runner = this.head
-  // while (runner){
-
-  // }
+  while (runner){
+    if (duplicatesHash[runner.value]){
+      this.removeNode(runner)
+    } else {
+      duplicatesHash[runner.value] = true
+    }
+    runner = runner.next
+  }
 }
 
-var x = new LinkedList(new Node(5))
-var y = new Node(2)
-x.addNode(y)
-x.addNode(new Node(4))
-x.addNode(new Node(3))
-x.viewList()
-var removed = x.removeNode(y)
-console.log(removed.value)
-x.viewList()
 
-// console.log( 'value of last element: ' + x.lastElement().value)
-// console.log(x.lastNode)
-// console.log(x.value)
-// x.value = 3
-// console.log(x.value)
+
+
+var list = new LinkedList(new Node(0))
+var x = [0,1,2,2,3,4,4,4,5,2,6]
+for (var index = 0; index < x.length; index++){
+  list.addNode(new Node(x[index]))
+}
+
+list.viewList()
+console.log('XXXXXXXXXXX')
+list.removeDuplicates()
+list.viewList()
+
