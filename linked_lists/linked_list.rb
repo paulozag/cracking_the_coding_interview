@@ -77,6 +77,21 @@ class Linked_list
     nil
   end
 
+  def kth_to_last k
+    find_kth head, k
+  end
+
+  def find_kth head, k
+    return 0 unless head
+    result = (find_kth head.next, k) + 1
+    p head.value if result == k
+    return result
+  end
+
+  private
+
+
+
 end
 
 class Node
@@ -88,11 +103,10 @@ class Node
   end
 end
 
-# x = Linked_list.new (Node.new(5))
+x = Linked_list.new(Node.new(0))
+list = [0,1,2,3,4]
+list.each {|val| x.add_node_by_value val }
 # x.view_list
-# x.add_node Node.new(4)
-# p x.last_element.value
-# x.add_node_by_value 3
-# x.view_list
-# p "length #{x.length}"
-# !!(Node.new(2).next)
+x.kth_to_last 2
+
+
