@@ -5,6 +5,7 @@ class Linked_list
 
   def initialize node=nil
     @head = node
+    @kth = nil
   end
 
   def last_element
@@ -79,12 +80,16 @@ class Linked_list
 
   def kth_to_last k
     find_kth head, k
+    @kth
   end
 
   def find_kth head, k
     return 0 unless head
     result = (find_kth head.next, k) + 1
-    p head.value if result == k
+    if result == k
+      @kth = head
+      p "Made assignment"
+    end
     return result
   end
 
@@ -107,6 +112,6 @@ x = Linked_list.new(Node.new(0))
 list = [0,1,2,3,4]
 list.each {|val| x.add_node_by_value val }
 # x.view_list
-x.kth_to_last 2
+p (x.kth_to_last 2).value
 
 
