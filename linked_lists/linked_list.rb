@@ -88,7 +88,6 @@ class Linked_list
     result = (find_kth head.next, k) + 1
     if result == k
       @kth = head
-      p "Made assignment"
     end
     return result
   end

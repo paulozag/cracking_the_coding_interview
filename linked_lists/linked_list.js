@@ -61,7 +61,6 @@ LinkedList.prototype.removeNode = function(node){
   }
 }
 
-
 LinkedList.prototype.removeDuplicates = function(){
   var duplicatesHash = {}
   runner = this.head
