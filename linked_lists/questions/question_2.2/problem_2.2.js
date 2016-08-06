@@ -76,7 +76,7 @@ LinkedList.prototype.removeNode = function(node){
 }
 
 LinkedList.prototype.kthToLast = function(k){
-  console.log(k)
+
   var targetNode  = new createHolder()
   this.findKth(this.head, k, targetNode)
   return targetNode.getValue()
@@ -86,11 +86,7 @@ LinkedList.prototype.findKth = function(head, k, targetNode){
   if (!head) {return 0}
 
   var result = this.findKth(head.next, k, targetNode) + 1
-  if (result == k) {
-    targetNode.setValue(head)
-    console.log('Found It!!!! value: ' + head.value)
-  }
-  console.log('k: ' + k + '  head value: ' + head.value + '  result value: ' + result)
+  if (result == k) { targetNode.setValue(head) }
   return result
 }
 
