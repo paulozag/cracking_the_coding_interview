@@ -93,9 +93,6 @@ class Linked_list
   end
 
   private
-
-
-
 end
 
 class Node
