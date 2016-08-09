@@ -1,7 +1,7 @@
 require 'pry'
 
 class Linked_list
-  attr_reader :head
+  attr_accessor :head
 
   def initialize node=nil
     @head = node
@@ -9,7 +9,8 @@ class Linked_list
   end
 
   def last_element
-    runner = head
+    return head unless head.next
+    runner = self.head
     while runner.next
       runner = runner.next
     end
@@ -17,7 +18,11 @@ class Linked_list
   end
 
   def add_node node
-    last_element.next = node
+    if self.head
+      last_element.next = node
+    else
+      self.head = node
+    end
   end
 
   def add_node_by_value value
@@ -92,6 +97,7 @@ class Linked_list
     return result
   end
 
+
   private
 end
 
@@ -104,10 +110,33 @@ class Node
   end
 end
 
+def partition_linked_list list, target
+  small_list = Linked_list.new
+  big_list = Linked_list.new
+  runner = list.head
+
+  while runner
+    next_element = runner.next
+    runner.next = nil
+    runner.value < target ? (small_list.add_node runner) : (big_list.add_node runner)
+    runner = next_element
+  end
+
+
+
+  small_list.last_element.next =  big_list.head
+  small_list
+end
+
+
+
 x = Linked_list.new(Node.new(0))
-list = [0,1,2,3,4]
+list = [0,1,6,8,1,5,8,3,2,3,4]
 list.each {|val| x.add_node_by_value val }
 # x.view_list
-p (x.kth_to_last 2).value
-
+# p (x.kth_to_last 2).value
+x.view_list
+p 'XXXXXXXXXXXXXXXXXXXXXXXX'
+y = partition_linked_list x,5
+y.view_list
 
