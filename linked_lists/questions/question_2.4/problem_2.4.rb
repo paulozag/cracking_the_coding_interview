@@ -3,11 +3,17 @@
 def partition_linked_list list, target
   small_list = Linked_list.new
   big_list = Linked_list.new
-  head = list
-  while head
-    head.value < target ? (small_list.add_node head) : (big_list.add_node head)
-    head = head.next
+  runner = list.head
+
+  while runner
+    next_element = runner.next
+    runner.next = nil
+    runner.value < target ? (small_list.add_node runner) : (big_list.add_node runner)
+    runner = next_element
   end
-  small_list.add_node big_list
+
+
+
+  small_list.last_element.next =  big_list.head
   small_list
 end

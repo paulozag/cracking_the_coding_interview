@@ -28,8 +28,14 @@ LinkedList.prototype.lastElement = function(){
 }
 
 LinkedList.prototype.addNode = function(node){
-  var lastNode = this.lastElement()
-  lastNode.next = node
+  if (this.head){
+    var lastNode = this.lastElement()
+    lastNode.next = node
+  } else {
+    this.head = node
+  }
+
+
 }
 
 LinkedList.prototype.length = function(){
@@ -90,17 +96,37 @@ var findAndRemoveDups = function(targetNode, classInstance){
   }
 }
 
+var partitionLinkedList = function(list, target){
+  var smallList = new LinkedList()
+  var bigList = new LinkedList()
+  var runner = list.head
+
+  while(runner){
+    var nextNode = runner.next
+    runner.next = null
+    if (runner.value < target){
+      smallList.addNode(runner)
+    } else {
+      bigList.addNode(runner)
+    }
+    runner = nextNode
+  }
+  smallList.addNode(bigList.head)
+  return smallList
+}
+
 
 
 
 var list = new LinkedList(new Node(0))
-var x = [0,1,2,2,3,4,4,4,5,2,6]
+var x = [0,1,2,3,4,5,4,1,2,3,4,5]
 for (var index = 0; index < x.length; index++){
   list.addNode(new Node(x[index]))
 }
 
 list.viewList()
 console.log('XXXXXXXXXXX')
-list.removeDuplicatesNoBuffer()
+// list.removeDuplicatesNoBuffer()
+// list.viewList()
+var partitionedList = partitionLinkedList(list,4)
 list.viewList()
-
