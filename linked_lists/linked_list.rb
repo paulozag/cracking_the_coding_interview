@@ -128,15 +128,74 @@ def partition_linked_list list, target
   small_list
 end
 
+def add_two_lists list1, list2
+  sum = Linked_list.new
+  runner1 = list1.head
+  runner2 = list2.head
+  remainder = 0
 
 
-x = Linked_list.new(Node.new(0))
-list = [0,1,6,8,1,5,8,3,2,3,4]
+  while runner1 || runner2 || (remainder > 0)
+    value_of_column = (runner1.value || 0) + (runner2.value || 0) + remainder
+    sum.add_node (Node.new(value_of_column%10))
+    remainder = value_of_column/10 > 0 ? 1 : 0
+    runner1 = runner1.next
+    runner2 = runner2.next
+  end
+
+  sum.view_list
+end
+
+def add_two_lists_forward_order list1, list2
+
+  arabic1 = (arabic_value_of list1.head).to_i
+  arabic2 = (arabic_value_of list2.head).to_i
+
+  sum = arabic1 + arabic2
+  arabic_to_forward_linked_list sum
+
+
+end
+
+def arabic_value_of head
+  if head.next
+    return head.value.to_s + (arabic_value_of head.next)
+  end
+  return head.value.to_s
+end
+
+def arabic_to_forward_linked_list num
+  answer = Linked_list.new
+  process_arabic_to_forward_ll answer, num
+  answer
+end
+
+def process_arabic_to_forward_ll list, num
+  if num/10 > 0
+    process_arabic_to_forward_ll list, num/10
+  end
+  list.add_node(Node.new(num%10))
+end
+
+
+
+x = Linked_list.new
+list = [7,1,6]
 list.each {|val| x.add_node_by_value val }
+
+list = [5,9,2]
+y = Linked_list.new
+list.each {|val| y.add_node_by_value val }
 # x.view_list
 # p (x.kth_to_last 2).value
 x.view_list
 p 'XXXXXXXXXXXXXXXXXXXXXXXX'
-y = partition_linked_list x,5
+# y = partition_linked_list x,5
 y.view_list
+p 'XXXXXXXXXXXXXXXXXXXXXXXX'
+add_two_lists_forward_order x,y
+p 'XXXXXXXXXXXXXXXXXXXXXXXX'
+a = add_two_lists_forward_order x,y
+a.view_list
+
 
