@@ -148,6 +148,14 @@ for (var index = 0; index < x.length; index++){
   list.addNode(new Node(x[index]))
 }
 
+
+var list2 = new LinkedList(new Node(6))
+var x = [5,6]
+for (var index = 0; index < x.length; index++){
+  list2.addNode(new Node(x[index]))
+}
+
+
 list.viewList()
 console.log('XXXXXXXXXXX')
 // list.removeDuplicatesNoBuffer()
@@ -155,4 +163,9 @@ console.log('XXXXXXXXXXX')
 // var partitionedList = partitionLinkedList(list,4)
 // list.viewList()
 // console.log(llToArabic(list.head,0))
-console.log(arabicToLl(7651).head.next.next.next.value)
+// console.log(arabicToLl(7651).head.next.next.next.value)
+
+var a = linkedListAdder(list, list2)
+console.log(llToArabic(list.head,0))
+console.log(llToArabic(list2.head,0))
+console.log(a.head.next.next.next.value)
