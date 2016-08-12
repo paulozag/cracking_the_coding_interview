@@ -129,8 +129,17 @@ var llToArabic = function(head, powerOfTen){
 }
 
 var arabicToLl = function(num){
-
+  var list = new LinkedList( new Node(num%10))
+  num = Math.floor(num/10)
+  while (num > 0){
+    list.addNode(new Node(num%10))
+    num = Math.floor(num/10)
+  }
+  return list
 }
+
+
+
 
 
 var list = new LinkedList(new Node(1))
@@ -145,4 +154,5 @@ console.log('XXXXXXXXXXX')
 // list.viewList()
 // var partitionedList = partitionLinkedList(list,4)
 // list.viewList()
-console.log(llToArabic(list.head,0))
+// console.log(llToArabic(list.head,0))
+console.log(arabicToLl(7651).head.next.next.next.value)
