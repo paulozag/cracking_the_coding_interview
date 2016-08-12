@@ -115,11 +115,26 @@ var partitionLinkedList = function(list, target){
   return smallList
 }
 
+var linkedListAdder = function(list1, list2){
+  arrabic1 = llToArabic(list1.head, 0)
+  arrabic2 = llToArabic(list2.head, 0)
+  return arabicToLl(arrabic1 + arrabic2)
+}
+
+var llToArabic = function(head, powerOfTen){
+  if (!head){
+    return 0
+  }
+  return llToArabic(head.next, powerOfTen + 1) + Math.pow(10, powerOfTen) * head.value
+}
+
+var arabicToLl = function(num){
+
+}
 
 
-
-var list = new LinkedList(new Node(0))
-var x = [0,1,2,3,4,5,4,1,2,3,4,5]
+var list = new LinkedList(new Node(1))
+var x = [5,6,7]
 for (var index = 0; index < x.length; index++){
   list.addNode(new Node(x[index]))
 }
@@ -128,5 +143,6 @@ list.viewList()
 console.log('XXXXXXXXXXX')
 // list.removeDuplicatesNoBuffer()
 // list.viewList()
-var partitionedList = partitionLinkedList(list,4)
-list.viewList()
+// var partitionedList = partitionLinkedList(list,4)
+// list.viewList()
+console.log(llToArabic(list.head,0))
