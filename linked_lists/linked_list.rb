@@ -179,23 +179,30 @@ end
 
 
 
-x = Linked_list.new
-list = [7,1,6]
-list.each {|val| x.add_node_by_value val }
+# x = Linked_list.new
+# list = [1,2,3,4,5,6,7]
+# list.each {|val| x.add_node_by_value val }
+# head_of_circle = Node.new(8)
+# x.add_node head_of_circle
+# [9,10,11,12,13].each {|val| x.add_node(Node.new(val))}
+# bad_node = Node.new(14)
+# x.add_node bad_node
+# bad_node.next = head_of_circle
 
-list = [5,9,2]
-y = Linked_list.new
-list.each {|val| y.add_node_by_value val }
+
+# list = [5,9,2]
+# y = Linked_list.new
+# list.each {|val| y.add_node_by_value val }
 # x.view_list
 # p (x.kth_to_last 2).value
-x.view_list
+# x.view_list
 p 'XXXXXXXXXXXXXXXXXXXXXXXX'
 # y = partition_linked_list x,5
-y.view_list
-p 'XXXXXXXXXXXXXXXXXXXXXXXX'
-add_two_lists_forward_order x,y
-p 'XXXXXXXXXXXXXXXXXXXXXXXX'
-a = add_two_lists_forward_order x,y
-a.view_list
+# y.view_list
+# p 'XXXXXXXXXXXXXXXXXXXXXXXX'
+# add_two_lists_forward_order x,y
+# p 'XXXXXXXXXXXXXXXXXXXXXXXX'
+# a = add_two_lists_forward_order x,y
+# a.view_list
 
 
