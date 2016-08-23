@@ -34,8 +34,6 @@ LinkedList.prototype.addNode = function(node){
   } else {
     this.head = node
   }
-
-
 }
 
 LinkedList.prototype.length = function(){
@@ -138,6 +136,32 @@ var arabicToLl = function(num){
   return list
 }
 
+var headOfCircularList = function(list){
+  var histo = {};
+  var runner = list.head
+
+  while (runner){
+    var id = objectID(runner)
+    if (histo[id]){
+      return runner
+    } else {
+      histo[id] = true
+    }
+    runner = runner.next
+  }
+}
+
+var objCounter = function(){
+  var counter = 1
+  var incrementCounter = function(){
+    counter++
+  }
+  var counterValue = function(){
+    return counter
+  }
+  return {incrementCounter: incrementCounter, counterValue: counterValue}
+}
+
 
 
 
@@ -148,16 +172,29 @@ for (var index = 0; index < x.length; index++){
   list.addNode(new Node(x[index]))
 }
 
+var headOfCircle = new Node(8)
+list.addNode(headOfCircle)
+
 
 var list2 = new LinkedList(new Node(6))
-var x = [5,6]
+var x = [9,10,11,12]
 for (var index = 0; index < x.length; index++){
-  list2.addNode(new Node(x[index]))
+  list.addNode(new Node(x[index]))
 }
 
 
 list.viewList()
 console.log('XXXXXXXXXXX')
+
+
+var hOC = headOfCircularList(list)
+console.log(hOC.value)
+
+var counter = new objCounter()
+console.log(counter.counterValue())
+counter.incrementCounter()
+console.log(counter.counterValue())
+
 // list.removeDuplicatesNoBuffer()
 // list.viewList()
 // var partitionedList = partitionLinkedList(list,4)
@@ -165,7 +202,8 @@ console.log('XXXXXXXXXXX')
 // console.log(llToArabic(list.head,0))
 // console.log(arabicToLl(7651).head.next.next.next.value)
 
-var a = linkedListAdder(list, list2)
-console.log(llToArabic(list.head,0))
-console.log(llToArabic(list2.head,0))
-console.log(a.head.next.next.next.value)
+// var a = linkedListAdder(list, list2)
+// console.log(llToArabic(list.head,0))
+// console.log(llToArabic(list2.head,0))
+// console.log(a.head.next.next.next.value)
+
