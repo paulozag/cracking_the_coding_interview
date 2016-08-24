@@ -1,5 +1,6 @@
 var Node = function(value){
   this.value = value
+  this.id =
   this.next = null
 };
 
@@ -11,7 +12,7 @@ var LinkedList = function(node){
 LinkedList.prototype.viewList = function(){
   var runner = this.head
   while (runner){
-    console.log(runner.value)
+    console.log(runner.value + '  id: ' + runner.id)
     runner = runner.next
   }
 }
@@ -190,7 +191,7 @@ console.log('XXXXXXXXXXX')
 var hOC = headOfCircularList(list)
 console.log(hOC.value)
 
-var counter = new objCounter()
+nodeCount = 0
 console.log(counter.counterValue())
 counter.incrementCounter()
 console.log(counter.counterValue())
