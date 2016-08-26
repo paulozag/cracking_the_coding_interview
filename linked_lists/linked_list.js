@@ -1,6 +1,8 @@
 var Node = function(value){
+  timer = Date.now()
+  while (Date.now() === timer){}
   this.value = value
-  this.id =
+  this.id = Date.now()
   this.next = null
 };
 
@@ -152,17 +154,6 @@ var headOfCircularList = function(list){
   }
 }
 
-var objCounter = function(){
-  var counter = 1
-  var incrementCounter = function(){
-    counter++
-  }
-  var counterValue = function(){
-    return counter
-  }
-  return {incrementCounter: incrementCounter, counterValue: counterValue}
-}
-
 
 
 
@@ -188,13 +179,10 @@ list.viewList()
 console.log('XXXXXXXXXXX')
 
 
-var hOC = headOfCircularList(list)
-console.log(hOC.value)
+// var hOC = headOfCircularList(list)
+// console.log(hOC.value)
 
-nodeCount = 0
-console.log(counter.counterValue())
-counter.incrementCounter()
-console.log(counter.counterValue())
+
 
 // list.removeDuplicatesNoBuffer()
 // list.viewList()

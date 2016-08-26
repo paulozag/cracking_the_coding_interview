@@ -19,13 +19,3 @@ var headOfCircularList = function(list){
   }
 }
 
-var objCounter = function(){
-  var counter = 1
-  var incrementCounter = function(){
-    counter++
-  }
-  var counterValue = function(){
-    return counter
-  }
-  return {incrementCounter: incrementCounter, counterValue: counterValue}
-}
