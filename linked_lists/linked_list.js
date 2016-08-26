@@ -153,37 +153,54 @@ var headOfCircularList = function(list){
   }
 }
 
+var isPalindrome = function(list){
+  var listContents = []
+  var runner = list.head
+  while (runner){
+    listContents.push(runner.value)
+    runner = runner.next
+  }
+  while (listContents.length > 1){
+    if (listContents.pop() != listContents.shift()){
+      return false
+    }
+  }
+  return true
+}
+
 
 
 
 
 var list = new LinkedList(new Node(1))
-var x = [5,6,7]
+var x = [2,3,4,5,5,4,3,2,1]
 for (var index = 0; index < x.length; index++){
   list.addNode(new Node(x[index]))
 }
 
-var headOfCircle = new Node(8)
-list.addNode(headOfCircle)
+console.log(isPalindrome(list))
+
+// var headOfCircle = new Node(8)
+// list.addNode(headOfCircle)
 
 
-var list2 = new LinkedList(new Node(6))
-var x = [9,10,11,12]
-for (var index = 0; index < x.length; index++){
-  list.addNode(new Node(x[index]))
-}
+// var list2 = new LinkedList(new Node(6))
+// var x = [9,10,11,12]
+// for (var index = 0; index < x.length; index++){
+//   list.addNode(new Node(x[index]))
+// }
 
-var lastElement = new Node(13)
-// lastElement.next = headOfCircle
-list.addNode(lastElement)
+// var lastElement = new Node(13)
+// // lastElement.next = headOfCircle
+// list.addNode(lastElement)
 
 
 // list.viewList()
 console.log('XXXXXXXXXXX')
 
 
-var hOC = headOfCircularList(list)
-console.log(hOC.value)
+// var hOC = headOfCircularList(list)
+// console.log(hOC.value)
 
 
 
