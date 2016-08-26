@@ -14,7 +14,7 @@ var LinkedList = function(node){
 LinkedList.prototype.viewList = function(){
   var runner = this.head
   while (runner){
-    console.log(runner.value + '  id: ' + runner.id)
+    console.log(runner.value + '  id: ' + runner.id )
     runner = runner.next
   }
 }
@@ -144,11 +144,10 @@ var headOfCircularList = function(list){
   var runner = list.head
 
   while (runner){
-    var id = objectID(runner)
-    if (histo[id]){
+    if (histo[runner.id]){
       return runner
     } else {
-      histo[id] = true
+      histo[runner.id] = true
     }
     runner = runner.next
   }
@@ -174,13 +173,17 @@ for (var index = 0; index < x.length; index++){
   list.addNode(new Node(x[index]))
 }
 
+var lastElement = new Node(13)
+// lastElement.next = headOfCircle
+list.addNode(lastElement)
 
-list.viewList()
+
+// list.viewList()
 console.log('XXXXXXXXXXX')
 
 
-// var hOC = headOfCircularList(list)
-// console.log(hOC.value)
+var hOC = headOfCircularList(list)
+console.log(hOC.value)
 
 
 
