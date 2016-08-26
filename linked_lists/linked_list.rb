@@ -153,8 +153,6 @@ def add_two_lists_forward_order list1, list2
 
   sum = arabic1 + arabic2
   arabic_to_forward_linked_list sum
-
-
 end
 
 def arabic_value_of head
