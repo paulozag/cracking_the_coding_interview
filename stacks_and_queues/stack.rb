@@ -32,17 +32,50 @@ class Stack
   end
 end
 
+class Queue
+  attr_accessor :first, :last
 
-stack = Stack.new (Node.new 5)
-p stack.peek
-stack.push (Node.new 6)
-p stack.peek
-stack.push (Node.new 7)
-p stack.peek
-stack.push (Node.new 8)
-p stack.peek
-p stack.pop
-p stack.peek
+  def initialize first=nil
+    @first = first
+    @last = first
+  end
+
+  def enqueue item
+    if first
+      last.next = item
+      @last = item
+    else
+      @first = item
+      @last = item
+    end
+  end
+
+  def dequeue
+    return nil unless first
+    dequeued_item = first.value
+    @first = first.next
+    dequeued_item
+  end
+
+end
+
+queue = Queue.new (Node.new 5)
+queue.enqueue (Node.new 6)
+queue.enqueue (Node.new 7)
+p queue.dequeue
+p queue.dequeue
+p queue.dequeue
+p queue.dequeue
+# stack = Stack.new (Node.new 5)
+# p stack.peek
+# stack.push (Node.new 6)
+# p stack.peek
+# stack.push (Node.new 7)
+# p stack.peek
+# stack.push (Node.new 8)
+# p stack.peek
+# p stack.pop
+# p stack.peek
 # p stack.peek
 # stack.pop
 # p stack.peek
