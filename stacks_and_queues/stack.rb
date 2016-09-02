@@ -12,7 +12,7 @@ class Stack
   attr_accessor :top
 
   def initialize top=nil
-    @top = top
+    @top = Node.new top
   end
 
   def pop
