@@ -1,4 +1,4 @@
-  class Node
+class Node
   attr_accessor :value, :next
 
   def initialize value=nil
@@ -21,8 +21,9 @@ class Stack
     @top = top.next
     pop_result
   end
-
+e
   def push item
+    item = Node.new(item)
     item.next = top
     @top = item
   end
