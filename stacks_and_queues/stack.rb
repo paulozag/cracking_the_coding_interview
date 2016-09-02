@@ -21,7 +21,7 @@ class Stack
     @top = top.next
     pop_result
   end
-e
+
   def push item
     item = Node.new(item)
     item.next = top
