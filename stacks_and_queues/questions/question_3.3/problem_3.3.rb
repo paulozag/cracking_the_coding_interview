@@ -79,6 +79,11 @@ class StackOfStacks
     @stacks.count
   end
 
+  def pop_at index
+    return nil if @stacks.size <= index
+    pop_result = @stacks[index].pop
+  end
+
 end
 
 stack = StackOfStacks.new 1
@@ -91,12 +96,4 @@ stack.push 5
 p stack.stack_size
 stack.push 6
 p stack.stack_size
-p stack.pop
-p stack.pop
-p stack.pop
-p stack.pop
-p stack.pop
-p stack.pop
-p stack.pop
-stack.push 1
-p stack.pop
+p stack.pop_at 1
