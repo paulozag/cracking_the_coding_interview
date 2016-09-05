@@ -55,10 +55,16 @@ StackOfStacks.prototype.push = function(value){
 StackOfStacks.prototype.pop = function(){
   var lastStack = this.lastStack()
   var popResult =  lastStack.pop()
-  if (lastStack.stackSize == 0){
-    this.stacks.pop()
-  }
+  if (lastStack.stackSize == 0){ this.stacks.pop() }
   return popResult
+}
+
+StackOfStacks.prototype.rebalance = function(index){
+  while (this.stacks[(index + 1)]){
+    var latterValue = this.stacks[index + 1].pop()
+    this.stacks[index].push(latterValue)
+    index++
+  }
 }
 
 StackOfStacks.prototype.popAt = function(index){
@@ -66,7 +72,7 @@ StackOfStacks.prototype.popAt = function(index){
     return null
   }
   var popResult = this.stacks[index].pop()
-
+  this.rebalance(index)
   return popResult
 }
 
@@ -82,5 +88,8 @@ while (incrementor < 38){
 console.log(stack.stacks.length)
 console.log(stack.lastStack().stackSize)
 console.log(stack.popAt(2))
+for(var i = 0; i < stack.stacks.length; i++){
+  console.log(stack.stacks[i].stackSize)
+}
 
 
