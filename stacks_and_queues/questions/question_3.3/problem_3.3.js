@@ -15,7 +15,7 @@ Stack.prototype.pop = function(){
   if (!this.top) {return null}
   result = this.top.value
   this.top = this.top.next
-  this.stack_size--
+  this.stackSize--
   return result
 }
 
@@ -23,7 +23,7 @@ Stack.prototype.push = function(item){
   nodeItem = new Node(item)
   nodeItem.next = this.top
   this.top = nodeItem
-  this.stack_size++
+  this.stackSize++
 }
 
 Stack.prototype.peek = function(){
@@ -44,19 +44,24 @@ StackOfStacks.prototype.lastStack = function(){
 }
 
 StackOfStacks.prototype.push = function(value){
-
+  var lastStack = this.lastStack()
+  console.log('pushing: ' + value + ' maxStack: ' + this.maxStack)
+  if (lastStack.stackSize == this.maxStack){
+    this.stacks.push(new Stack(value))
+  } else {
+    lastStack.push(value)
+  }
 }
 
 
-var sos = new StackOfStacks(1)
-console.log(sos.lastStack())
+var stack = new StackOfStacks(1)
 
-var stack = new Stack(1)
-console.log(stack.stackSize)
 stack.push(2)
 stack.push(3)
 stack.push(4)
-console.log(stack.stackSize)
-stack.pop()
-stack.pop()
-console.log(stack.stackSize)
+// console.log(stack.lastStack())
+stack.push(5)
+stack.push(6)
+// console.log(stack.lastStack())
+console.log(stack.stacks.length)
+
