@@ -47,6 +47,8 @@ end
 
 class StackOfStacks
 
+  attr_reader :stacks
+
   def initialize value
     @stacks = [Stack.new(value)]
     @last_stack = @stacks.first
@@ -82,18 +84,23 @@ class StackOfStacks
   def pop_at index
     return nil if @stacks.size <= index
     pop_result = @stacks[index].pop
+    rebalance index
+    pop_result
+  end
+
+  private
+  def rebalance index
+    return if index == ((@stacks.length) -1)
+    while @stacks[index + 1]
+      @stacks[index].push @stacks[index + 1].pop
+      index += 1
+    end
   end
 
 end
 
 stack = StackOfStacks.new 1
-# p stack.maxxed?
-stack.push 2
-stack.push 3
-stack.push 4
-stack.push 5
-# p stack.maxxed?
-p stack.stack_size
-stack.push 6
-p stack.stack_size
-p stack.pop_at 1
+(2..38).to_a.each {|num| stack.push num}
+# p stack.stacks.last.count
+stack.pop_at 2
+stack.stacks.each {|stack| p stack.count}
