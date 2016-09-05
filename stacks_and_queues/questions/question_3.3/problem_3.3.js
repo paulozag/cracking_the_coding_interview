@@ -53,6 +53,15 @@ StackOfStacks.prototype.push = function(value){
   }
 }
 
+StackOfStacks.prototype.pop = function(){
+  var lastStack = this.lastStack()
+  var popResult =  lastStack.pop()
+  if (lastStack.stackSize == 0){
+    this.stacks.pop()
+  }
+  return popResult
+}
+
 
 var stack = new StackOfStacks(1)
 
@@ -64,4 +73,7 @@ stack.push(5)
 stack.push(6)
 // console.log(stack.lastStack())
 console.log(stack.stacks.length)
+console.log(stack.pop())
+console.log(stack.stacks.length)
+
 
