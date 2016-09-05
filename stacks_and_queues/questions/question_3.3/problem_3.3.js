@@ -8,7 +8,7 @@ var Node = function(value){
 
 var Stack = function(value){
   this.top = new Node(value)
-  this.stack_size = 1
+  this.stackSize = 1
 };
 
 Stack.prototype.pop = function(){
@@ -32,15 +32,31 @@ Stack.prototype.peek = function(){
 
 var StackOfStacks = function(value){
   this.stacks = []
+  this.maxStack = 5
   this.stacks.push(new Stack(value))
 }
 
+StackOfStacks.prototype.lastStack = function(){
+  if (this.stacks.length == 0){
+    return null
+  }
+  return this.stacks[(this.stacks.length - 1)]
+}
+
+StackOfStacks.prototype.push = function(value){
+
+}
+
+
+var sos = new StackOfStacks(1)
+console.log(sos.lastStack())
+
 var stack = new Stack(1)
-console.log(stack.stack_size)
+console.log(stack.stackSize)
 stack.push(2)
 stack.push(3)
 stack.push(4)
-console.log(stack.stack_size)
+console.log(stack.stackSize)
 stack.pop()
 stack.pop()
-console.log(stack.stack_size)
+console.log(stack.stackSize)
