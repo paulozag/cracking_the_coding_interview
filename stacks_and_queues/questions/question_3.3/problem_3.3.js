@@ -45,7 +45,6 @@ StackOfStacks.prototype.lastStack = function(){
 
 StackOfStacks.prototype.push = function(value){
   var lastStack = this.lastStack()
-  console.log('pushing: ' + value + ' maxStack: ' + this.maxStack)
   if (lastStack.stackSize == this.maxStack){
     this.stacks.push(new Stack(value))
   } else {
@@ -62,18 +61,26 @@ StackOfStacks.prototype.pop = function(){
   return popResult
 }
 
+StackOfStacks.prototype.popAt = function(index){
+  if (index >= this.stacks.length){
+    return null
+  }
+  var popResult = this.stacks[index].pop()
+
+  return popResult
+}
+
 
 var stack = new StackOfStacks(1)
 
-stack.push(2)
-stack.push(3)
-stack.push(4)
-// console.log(stack.lastStack())
-stack.push(5)
-stack.push(6)
-// console.log(stack.lastStack())
+var incrementor = 2
+while (incrementor < 38){
+  stack.push(incrementor)
+  incrementor++
+}
+
 console.log(stack.stacks.length)
-console.log(stack.pop())
-console.log(stack.stacks.length)
+console.log(stack.lastStack().stackSize)
+console.log(stack.popAt(2))
 
 
