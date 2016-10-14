@@ -72,7 +72,6 @@ class BinarySearchTree
   end
 
   def delete_node(node_to_delete, parent)
-    # binding.pry
     return_value = node_to_delete.value
     case child_count(node_to_delete)
     when 0
@@ -95,7 +94,6 @@ class BinarySearchTree
   end
 
   def find_and_delete_min_child(root, parent)
-    # binding.pry
     unless root.left
       return_value = root.value
       delete_node(root, parent)
@@ -134,7 +132,7 @@ a.insert 4.5
 
 a.print_tree
 p '************************'
-p a.remove(2)
+p a.remove(9)
 p '************************'
 a.print_tree
 p "new root: #{a.root.value}"
