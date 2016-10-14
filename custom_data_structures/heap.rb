@@ -1,5 +1,6 @@
 class Heap
   attr_accessor :heap_size, :heap_array
+  # min-max logic in #bubble_up, #bubble_down, #bubble_down_done?, #index_of_larger_child
 
   def initialize(args={})
     @heap_array = []
@@ -9,6 +10,7 @@ class Heap
   end
 
   def peek
+
     @heap_array[0]
   end
 
@@ -32,30 +34,37 @@ class Heap
 
   private
   def build_heap(initial_array)
+
     initial_array.each { |val| push(val)  }
   end
 
   def left_child(index)
+
     2*index + 1
   end
 
   def right_child(index)
+
     2*index + 2
   end
 
   def left_child_key(index)
+
     @heap_array[left_child(index)]
   end
 
   def right_child_key(index)
+
     @heap_array[right_child(index)]
   end
 
   def parent(index)
+
     (index -1)/2
   end
 
   def parent_value(index)
+
     @heap_array[parent(index)]
   end
 
@@ -72,16 +81,21 @@ class Heap
   end
 
   def bubble_down(index)
-    return if leaf_node?(index)
-    if right_child_key(index)
-      return if @heap_array[index] >  right_child_key(index) &&
-                @heap_array[index] >  left_child_key(index)
-    end
-    return if @heap_array[index] > left_child_key(index)
+    return if bubble_down_done?(index)
 
     ilc = index_of_larger_child(index)
     swap_values(index, ilc)
     bubble_down(ilc)
+  end
+
+  def bubble_down_done?(index)
+    return true if leaf_node?(index)
+    if right_child_key(index)
+      return true if  @heap_array[index] >  right_child_key(index) &&
+                      @heap_array[index] >  left_child_key(index)
+    end
+    return true if @heap_array[index] > left_child_key(index)
+    false
   end
 
   def index_of_larger_child(index)
@@ -93,10 +107,9 @@ class Heap
   end
 
   def leaf_node?(index)
+
     index >= @heap_size/2
   end
-
-
  end
 
 # a = Heap.new(source_array: [1,2,3])
