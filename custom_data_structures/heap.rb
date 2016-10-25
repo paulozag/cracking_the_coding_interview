@@ -4,6 +4,7 @@ class Heap
 
   def initialize(args={})
     @heap_array = []
+    @min_heap = args[:min_heap]
     initial_array = args.fetch(:source_array, [])
     @heap_size = @heap_array.length
     build_heap(initial_array)
@@ -75,9 +76,17 @@ class Heap
   end
 
   def bubble_up(index)
-    return if index == 0 || parent_value(index) >= @heap_array[index]
+    return if index == 0 || compare(parent_value(index),
+                                    @heap_array[index])
+    # parent_value(index) >= @heap_array[index]
+    # compare(val1, val2)
     swap_values(index, parent(index))
     bubble_up(parent(index))
+  end
+
+  def compare(val1, val2)
+
+    @min_heap ? val1 <= val2 : val1 >= val2
   end
 
   def bubble_down(index)
@@ -91,16 +100,26 @@ class Heap
   def bubble_down_done?(index)
     return true if leaf_node?(index)
     if right_child_key(index)
-      return true if  @heap_array[index] >  right_child_key(index) &&
-                      @heap_array[index] >  left_child_key(index)
+      return true if  compare(@heap_array[index], right_child_key(index)) &&
+                      compare(@heap_array[index], left_child_key(index))
+
+
+      # @heap_array[index] >  right_child_key(index) &&
+      # @heap_array[index] >  left_child_key(index)
     end
-    return true if @heap_array[index] > left_child_key(index)
+    return true if compare(@heap_array[index], left_child_key(index))
+    # @heap_array[index] > left_child_key(index)
     false
   end
 
   def index_of_larger_child(index)
     if @heap_array[right_child(index)]
-      left_child_key(index) >= right_child_key(index) ? left_child(index) : right_child(index)
+      if compare(left_child_key(index), right_child_key(index))
+        left_child(index)
+      else
+        right_child(index)
+      end
+      # left_child_key(index) >= right_child_key(index) ? left_child(index) : right_child(index)
     else
       left_child(index)
     end
@@ -128,3 +147,6 @@ class Heap
 
 a = Heap.new(source_array: [1,3,5,7,9,2,4,6,8,10])
 11.times {p a.pop}
+p '$%$' * 40
+b   = Heap.new(source_array: [1,3,5,7,9,2,4,6,8,10], min_heap: true)
+11.times {p b.pop}
