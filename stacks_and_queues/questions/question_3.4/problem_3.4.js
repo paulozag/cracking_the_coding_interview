@@ -12,9 +12,9 @@ var Stack = function(value){
 
 Stack.prototype.pop = function(){
   if (!this.top) {return null}
-  result = this.top.value
+  result = this.top
   this.top = this.top.next
-  return result
+  return result.value
 }
 
 Stack.prototype.push = function(item){
@@ -27,54 +27,25 @@ Stack.prototype.peek = function(){
   return (this.top ? this.top.value : "empty")
 }
 
-function Disc(size){
-  this.size = size
-}
-
-function TowerOfHanoi(numDiscs){
-  this.numDiscs = typeof numDiscs !== 'undefined' ? numDiscs : 9;
+var TowerOfHanoi = function(numDiscs){
+  this.numDiscs = numDiscs = typeof numDiscs !== 'undefined' ? numDiscs : 7;
   this.tower1 = new Stack()
-  this.tower2 = new Stack()
-  this.tower3 = new Stack()
+  this.tower1 = new Stack()
+  this.tower1 = new Stack()
 
-  for (var index = this.numDiscs; index > 0; index--){
-    this.tower1.push(new Disc(index))
+  for(var size = numDiscs; size > 0; size--){
+    this.tower1.push(size)
   }
-}
 
-TowerOfHanoi.prototype.solve = function(){
-  console.log('tower 1 before move: ' + th.tower1.peek())
-  this.move(this.numDiscs, this.tower1, this.tower2, this.tower3)
-}
 
-TowerOfHanoi.prototype.move = function(numDiscs, from, pivot, destination){
-  // move numDiscs -1 from from to pivot
-  // move last disc from from to destination
-  // move numDiscs -1 from pivot to destination
-  console.log('in move')
-  if (numDiscs === 1){
-    // console.log('in num === 1')
-    var valueToMove = from.pop()
-    console.log('moved item: ' + valueToMove.value)
-    destination.push(valueToMove)
-  } else {
-    this.move(numDiscs - 1, from, destination, pivot )
-    this.move(1, from, pivot, destination)
-    this.move(numDiscs - 1, pivot, from, destination)
-  }
 }
 
 
 
-th = new TowerOfHanoi()
-// console.log(th.tower1.peek())
-th.solve()
-console.log('tower 1' + th.tower1.peek())
-console.log('tower 2' + th.tower2.peek())
-console.log('tower 3' + th.tower3.peek())
-console.log(th.tower3.peek())
-for(var index in th.tower3){
-  console.log(th.tower3.pop().value)
-}
 
 
+th = new TowerOfHanoi(9)
+console.log(th.tower1.pop())
+console.log(th.tower1.pop())
+console.log(th.tower1.pop())
+console.log(th.tower1.pop())
