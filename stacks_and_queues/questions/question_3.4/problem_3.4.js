@@ -30,8 +30,8 @@ Stack.prototype.peek = function(){
 var TowerOfHanoi = function(numDiscs){
   this.numDiscs = (numDiscs = typeof numDiscs !== 'undefined' ? numDiscs : 7)
   this.tower1 = new Stack()
-  this.tower1 = new Stack()
-  this.tower1 = new Stack()
+  this.tower2 = new Stack()
+  this.tower3 = new Stack()
 
   for(var size = numDiscs; size > 0; size--){
     this.tower1.push(size)
@@ -74,3 +74,4 @@ TowerOfHanoi.prototype.move = function(numDiscs, origin, pivot, destination){
 th = new TowerOfHanoi(9)
 // while(th.tower1.peek()){console.log(th.tower1.pop())}
 th.solve()
+// th.tower3.push(th.tower1.pop())
