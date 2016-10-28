@@ -44,8 +44,9 @@ TowerOfHanoi.prototype.solve = function(){
               this.tower1,
               this.tower2,
               this.tower3)
-  console.log('contents of tower3: ')
-  while(this.tower3.peek()){console.log(this.tower3.pop())}
+  // tests that tower 3 now contains all discs in correct order
+  // console.log('contents of tower3: ')
+  // while(this.tower3.peek()){console.log(this.tower3.pop())}
 }
 
 TowerOfHanoi.prototype.move = function(numDiscs, origin, pivot, destination){
@@ -68,9 +69,7 @@ TowerOfHanoi.prototype.move = function(numDiscs, origin, pivot, destination){
 }
 
 
-
-
-
+// ***************************************************************************
 th = new TowerOfHanoi(9)
 // while(th.tower1.peek()){console.log(th.tower1.pop())}
 th.solve()
