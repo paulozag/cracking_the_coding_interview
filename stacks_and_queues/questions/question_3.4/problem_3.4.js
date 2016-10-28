@@ -24,11 +24,11 @@ Stack.prototype.push = function(item){
 }
 
 Stack.prototype.peek = function(){
-  return (this.top ? this.top.value : "empty")
+  return (this.top ? this.top.value : null)
 }
 
 var TowerOfHanoi = function(numDiscs){
-  this.numDiscs = numDiscs = typeof numDiscs !== 'undefined' ? numDiscs : 7;
+  this.numDiscs = (numDiscs = typeof numDiscs !== 'undefined' ? numDiscs : 7)
   this.tower1 = new Stack()
   this.tower1 = new Stack()
   this.tower1 = new Stack()
@@ -36,8 +36,35 @@ var TowerOfHanoi = function(numDiscs){
   for(var size = numDiscs; size > 0; size--){
     this.tower1.push(size)
   }
+}
 
+TowerOfHanoi.prototype.solve = function(){
+  console.log(typeof(this.tower1))
+  this.move(  this.numDiscs,
+              this.tower1,
+              this.tower2,
+              this.tower3)
+  console.log('contents of tower3: ')
+  while(this.tower3.peek()){console.log(this.tower3.pop())}
+}
 
+TowerOfHanoi.prototype.move = function(numDiscs, origin, pivot, destination){
+  if(numDiscs == 1){
+    destination.push(origin.pop())
+    return
+  }
+  this.move(    numDiscs-1,
+                origin,
+                destination,
+                pivot)
+  this.move(    1,
+                origin,
+                pivot,
+                destination)
+  this.move(    numDiscs -1,
+                pivot,
+                origin,
+                destination)
 }
 
 
@@ -45,7 +72,5 @@ var TowerOfHanoi = function(numDiscs){
 
 
 th = new TowerOfHanoi(9)
-console.log(th.tower1.pop())
-console.log(th.tower1.pop())
-console.log(th.tower1.pop())
-console.log(th.tower1.pop())
+// while(th.tower1.peek()){console.log(th.tower1.pop())}
+th.solve()
