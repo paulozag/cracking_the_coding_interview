@@ -86,7 +86,6 @@ class BinarySearchTree
       else
         node_to_delete.left ? (parent.right = node_to_delete.left) : (parent.right = node_to_delete.right)
       end
-
     when 2
       node_to_delete.value = find_and_delete_min_child(node_to_delete.right, node_to_delete)
     end
