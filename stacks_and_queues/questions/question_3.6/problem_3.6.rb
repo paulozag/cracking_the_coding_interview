@@ -58,49 +58,29 @@ class StackSort
   end
 
   private
-  def set_first_element
-    min = @unsorted_stack.pop
-    @stack_size += 1
-    while @unsorted_stack.peek
-      current_element = @unsorted_stack.pop
-      @stack_size +=  1
-      if min > current_element
-        @temp_stack.push(min)
-        min = current_element
-      else
-        @temp_stack.push(current_element)
-      end
-    end
-    @unsorted_stack.push(min)
-    @perm_stack_count +=  1
-  end
-
-  def sort_stack
-    until @perm_stack_count == @stack_size
-      roll_back_unsorted_stack
-      push_min_element_to_unsorted_stack
-    end
-  end
 
   def roll_back_unsorted_stack
     (@stack_size - @perm_stack_count).times{@unsorted_stack.push(@temp_stack.pop)}
   end
 
   def push_min_element_to_unsorted_stack
-    # binding.pry
     min_element = @unsorted_stack.pop
     unsorted_element_count = (@stack_size - @perm_stack_count -1)
     unsorted_element_count.times do
-      next_element = @unsorted_stack.pop
-      if next_element < min_element
-        @temp_stack.push(min_element)
-        min_element = next_element
-      else
-        @temp_stack.push(next_element)
-      end
+      min_element = push_larger_element_to_unsorted_stack(min_element, @unsorted_stack.pop)
     end
     @perm_stack_count +=1
     @unsorted_stack.push(min_element)
+  end
+
+  def push_larger_element_to_unsorted_stack(min_element, next_element)
+    if next_element < min_element
+      @temp_stack.push(min_element)
+      min_element = next_element
+    else
+      @temp_stack.push(next_element)
+    end
+    min_element
   end
 
   def get_stack_count
