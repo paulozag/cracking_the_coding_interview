@@ -46,6 +46,37 @@ StackSorter.prototype.getStackCount = function(){
   return count
 }
 
+StackSorter.prototype.sort = function(){
+  while(this.stackCount != this.permStackCount){
+    this.pushMinElementToUnsortedStack()
+    this.rollbackUnsortedStack()
+  }
+}
+
+StackSorter.prototype.pushMinElementToUnsortedStack = function(){
+  var min = this.unsortedStack.pop()
+  var count = 0
+  while(count < this.stackCount - this.permStackCount){
+    var nextElement = this.unsortedStack.pop()
+    if(nextElement < min){
+      this.tempStack.push(min)
+      min = nextElement
+    } else{
+      this.tempStack.push(nextElement)
+    }
+    count++
+  }
+  this.permStackCount++
+  this.unsortedStack.push(min)
+}
+
+StackSorter.prototype.rollbackUnsortedStack = function(){
+  while(this.tempStack.peek()){
+    this.unsortedStack.push(this.tempStack.pop())
+  }
+
+}
+
 
 // ##########################################################
 uS = new Stack()
@@ -54,3 +85,7 @@ for(var value of [2,5,1,3,4]){
 }
 sS = new StackSorter(uS)
 console.log(sS.stackCount)
+sS.sort()
+while(sS.unsortedStack.peek()){
+  console.log(sS.unsortedStack.pop())
+}
