@@ -22,11 +22,8 @@ class BinaryTree
     if self.root
       @traversal_queue = [self.root]
       while @traversal_queue.any?
-        # binding.pry
-        current_node = @traversal_queue.shift
-        # binding.pry
+        current_node = @traversal_queue.pop
         break if successful_insertion?(current_node, value)
-        # binding.pry
       end
     else
       self.root = Node.new(value)
@@ -38,10 +35,8 @@ class BinaryTree
       p 'tree is empty'
     end
     @traversal_queue = [self.root]
-    # binding.pry
     while @traversal_queue.any?
-      # binding.pry
-      current_node = @traversal_queue.shift
+      current_node = @traversal_queue.pop
       p current_node.value
       @traversal_queue.unshift(current_node.left) if current_node.left
       @traversal_queue.unshift(current_node.right) if current_node.right
@@ -51,11 +46,9 @@ class BinaryTree
   private
   def successful_insertion?(current_node, value)
     success_flag = false
-    # binding.pry
     if current_node.left && current_node.right
       @traversal_queue.unshift current_node.left
       @traversal_queue.unshift current_node.right
-      # binding.pry
     else
       new_node = Node.new(value)
       if !current_node.left
@@ -65,7 +58,6 @@ class BinaryTree
       end
       success_flag = true
     end
-    # binding.pry
     success_flag
   end
 end
