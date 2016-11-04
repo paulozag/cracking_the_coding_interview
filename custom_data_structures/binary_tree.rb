@@ -17,7 +17,7 @@ class BinaryTree
         break if successful_insertion?(current_node, value)
       end
     else
-      self.root = Node.new(value)
+      self.root = TreeNode.new(value)
     end
   end
 
@@ -53,12 +53,12 @@ class BinaryTree
   end
 end
 
-b_t = BinaryTree.new
-b_t.insert(5)
-b_t.insert(4)
-b_t.insert(3)
-b_t.insert(2)
-b_t.insert(1)
-p b_t
+# b_t = BinaryTree.new
+# b_t.insert(5)
+# b_t.insert(4)
+# b_t.insert(3)
+# b_t.insert(2)
+# b_t.insert(1)
+# p b_t
 
-b_t.print_tree
+# b_t.print_tree
