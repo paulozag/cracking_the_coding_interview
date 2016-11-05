@@ -4,8 +4,8 @@ require 'pry'
 class BinarySearchTree
   attr_accessor :root
 
-  def initialize(value)
-    @root = TreeNode.new(value)
+  def initialize(value=nil)
+    @root = TreeNode.new(value) if value
   end
 
   def insert(value, root=@root)
@@ -118,20 +118,20 @@ end
 
 a = BinarySearchTree.new(6)
 
-a.insert 2
-a.insert 8
-a.insert 1
-a.insert 3
-a.insert 7
-a.insert 9
-a.insert 0.5
-a.insert 4
-a.insert 3.5
-a.insert 4.5
+# a.insert 2
+# a.insert 8
+# a.insert 1
+# a.insert 3
+# a.insert 7
+# a.insert 9
+# a.insert 0.5
+# a.insert 4
+# a.insert 3.5
+# a.insert 4.5
 
-a.print_tree
-p '************************'
-p a.remove(9)
-p '************************'
-a.print_tree
-p "new root: #{a.root.value}"
+# a.print_tree
+# p '************************'
+# p a.remove(9)
+# p '************************'
+# a.print_tree
+# p "new root: #{a.root.value}"
