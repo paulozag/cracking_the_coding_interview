@@ -113,30 +113,3 @@ class Linked_list
   end
 end
 
-x = Linked_list.new
-x.enqueue 3
-x.push 4
-x.enqueue 2
-x.push 5
-x.enqueue 1
-x.push 6
-x.enqueue 0
-
-x.view_list
-p '%%%%%%%%%%%%%%%%%%%%%%%%%%'
-p "peek: #{x.peek}  tail peek: #{x.peek_tail}"
-p "dequeue: #{x.dequeue}"
-p "dequeue: #{x.dequeue}"
-p "pop: #{x.pop}"
-p "peek: #{x.peek}  tail peek: #{x.peek_tail}"
-p '%%%%%%%%%%%%%%%%%%%%%%%%%%'
-x.view_list
-p '%%%%%%%%%%%%%%%%%%%%%%%%%%'
-p "pop: #{x.pop}"
-p "peek: #{x.peek}  tail peek: #{x.peek_tail}"
-p '%%%%%%%%%%%%%%%%%%%%%%%%%%'
-
-x.view_list
-# p "value of tail: #{p x.tail}"
-
-# x.view_list
