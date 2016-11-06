@@ -1,0 +1,1 @@
+Given a sorted (increasingorder) array with unique integer elements, write an algorithm to createa binary search tree with minimal height.

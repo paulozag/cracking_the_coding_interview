@@ -57,7 +57,6 @@ class Queue
     @first = first.next
     dequeued_item
   end
-
 end
 
 queue = Queue.new (Node.new 5)
