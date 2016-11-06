@@ -1,7 +1,7 @@
 require_relative 'node'
 require 'pry-byebug'
 # currently refactoring, most likely broken
-class Linked_list
+class LinkedList
   attr_accessor :head, :tail
 
   def initialize(value=nil)
