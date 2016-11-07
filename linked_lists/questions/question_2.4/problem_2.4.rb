@@ -34,7 +34,4 @@ class LinkedList
 
 end
 
-x = LinkedList.new
-x.view_list
-x.partition 3
-x.view_list
+# test cases: empty list, target less than, within, greater than bounds of list
