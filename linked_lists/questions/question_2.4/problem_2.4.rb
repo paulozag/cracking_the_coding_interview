@@ -1,19 +1,31 @@
-# Write code to partition a linked list around a value x, such that all nodes less than x come before all nodes greater than or equal to x.
+require_relative './../../../custom_data_structures/ruby_data_structures/linked_list.rb'
 
-def partition_linked_list list, target
-  small_list = Linked_list.new
-  big_list = Linked_list.new
-  runner = list.head
+class LinkedList
 
-  while runner
-    next_element = runner.next
-    runner.next = nil
-    runner.value < target ? (small_list.add_node runner) : (big_list.add_node runner)
-    runner = next_element
+  def partition(value)
+    small_list = LinkedList.new
+    big_list = LinkedList.new
+
+    build_partition_lists(small_list, big_list, value)
+    @head = new_head_value(small_list, big_list)
   end
 
+  private
+  def build_partition_lists(small_list, big_list, value)
+    runner = @head
+    while runner
+      if runner.value < value
+        small_list.push(runner.value)
+      else
+        big_list.push(runner.value)
+      end
+      runner = runner.next
+    end
+  end
 
+  def new_head_value(small_list, big_list)
+    if small_list.head
 
-  small_list.last_element.next =  big_list.head
-  small_list
 end
+
+# test cases: empty list, target outside of list bounds (greater and lesser)
