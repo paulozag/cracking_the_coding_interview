@@ -25,7 +25,16 @@ class LinkedList
 
   def new_head_value(small_list, big_list)
     if small_list.head
+      small_list.tail.next = big_list.head
+      small_list.head
+    else
+      big_list.head
+    end
+  end
 
 end
 
-# test cases: empty list, target outside of list bounds (greater and lesser)
+x = LinkedList.new
+x.view_list
+x.partition 3
+x.view_list
