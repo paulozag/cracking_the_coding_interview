@@ -22,9 +22,13 @@ class LinkedList
     temp_list
   end
 
-  def add_two_lists(list1, list2)
+  def reverse!
+    @head = self.reverse.head
+  end
+
+  def sum(list2)
     sum_list  = LinkedList.new
-    runner1   = list1.head
+    runner1   = @head
     runner2   = list2.head
     carry     = false
 
@@ -42,6 +46,10 @@ class LinkedList
     sum_list
   end
 
+  def sum_of_reverse_lists(list2)
+    self.reverse.sum(list2.reverse).reverse
+  end
+
   private
   def advance_runners(runner1, runner2)
     runner1 = runner1.next if runner1
@@ -56,9 +64,3 @@ class LinkedList
   end
 
 end
-
-list1 = LinkedList.convert_arabic_to_linked_list(3412)
-list1.view_list
-p '**************************************'
-list1 = list1.reverse
-list1.view_list
