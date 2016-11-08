@@ -29,7 +29,16 @@ class LinkedList
   end
 end
 
+x = LinkedList.new
+['A','B','C'].each { |val| x.push(val)}
+head_of_circle = Node.new('D')
+x.push_node(head_of_circle)
+['E','F','G'].each { |val| x.push(val)}
 
+x.view_list
+x.tail.next = head_of_circle
+p '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+# x.view_list
 
 
 
