@@ -11,3 +11,4 @@ class Node
     "next: #{self.next ? self.value : 'no next node'}"
   end
 end
+
