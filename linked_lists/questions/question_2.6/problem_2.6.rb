@@ -1,24 +1,35 @@
-require '../../linked_list.rb'
+require_relative './../../../custom_data_structures/ruby_data_structures/linked_list.rb'
 
-def find_head_of_circular_list list
-  histo = {}
-  head = list.head
-  while head
-    return head if histo[head.object_id]
-    histo[head.object_id] = true
-    head = head.next
+class LinkedList
+
+  def head_of_circular_list
+    return nil unless @head && @head.next
+    tortoise        = @head
+    rabbit          = @head.next
+    tortoise_steps  = 0
+    circle_size     = nil
+
+    while rabbit
+      if rabbit == tortoise
+        break if circle_size
+        circle_size = 0
+      end
+
+      tortoise  = tortoise.next
+      rabbit    = advance_rabbit(rabbit)
+      tortoise_steps  += 1
+      circle_size     += 1 if circle_size
+    end
+
+    return nil unless rabbit
+    distance_to_circle_head = tortoise_steps - (2 * circle_size) - 1
+    runner = @head
+    distance_to_circle_head.times {runner = runner.next}
+    runner
   end
 end
 
-x = Linked_list.new
-list = [1,2,3,4,5,6,7]
-list.each {|val| x.add_node_by_value val }
-head_of_circle = Node.new(8)
-x.add_node head_of_circle
-[9,10,11,12,13].each {|val| x.add_node(Node.new(val))}
-bad_node = Node.new(14)
-x.add_node bad_node
-bad_node.next = head_of_circle
 
-answer = find_head_of_circular_list x
-p answer.value
+
+
+
