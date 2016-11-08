@@ -1,13 +1,28 @@
-require '../../linked_list.rb'
+require_relative './../../../custom_data_structures/ruby_data_structures/linked_list.rb'
 
-def find_kth_to_last k
-  find_kth head, k
+class LinkedList
+
+  def kth_to_last(k)
+    leader = advance_head_k_elements(k)
+    follower = @head
+    return nil unless leader
+    while leader.next
+      leader = leader.next
+      follower = follower.next
+    end
+    follower.value
+  end
+
+  def advance_head_k_elements(k)
+    runner = @head
+    k.times do
+      return nil unless runner.next
+      runner = runner.next
+    end
+    runner
+  end
 end
 
-def find_kth head, k
-  return 0 unless head
 
-  p head.value if (find_kth head.next, k) + 1 == k
 
-end
 

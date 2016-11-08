@@ -1,24 +1,45 @@
-require '../../linked_list.rb'
+require_relative './../../../custom_data_structures/ruby_data_structures/linked_list.rb'
 
-def find_head_of_circular_list list
-  histo = {}
-  head = list.head
-  while head
-    return head if histo[head.object_id]
-    histo[head.object_id] = true
-    head = head.next
+class LinkedList
+
+  def head_of_circular_list
+    return nil unless @head && @head.next
+    tortoise        = @head
+    rabbit          = @head
+
+    rabbit, tortoise = collide_runners(rabbit,tortoise)
+    return nil unless rabbit  #acyclic list
+    tortoise  = @head # now both rabbit and tortoise are k steps
+                      # away from circle head
+    head_of_circular_list = have_runners_meet(rabbit, tortoise)
+  end
+
+  def collide_runners(rabbit, tortoise)
+    # when collision occurs, rabbit will be
+    # k (length of non-cyclic front portion) steps
+    # away from the circle head
+    while rabbit && rabbit.next
+      tortoise  = tortoise.next
+      rabbit    = rabbit.next.next
+      break if rabbit == tortoise
+    end
+
+    return [rabbit, tortoise] if rabbit && rabbit.next
+    nil
+  end
+
+  def have_runners_meet(rabbit, tortoise)
+    while true  # move both runners 1 step ahead and they will meet at the
+                # circle head
+      break if tortoise == rabbit
+      rabbit    = rabbit.next
+      tortoise  = tortoise.next
+    end
+    tortoise
   end
 end
 
-x = Linked_list.new
-list = [1,2,3,4,5,6,7]
-list.each {|val| x.add_node_by_value val }
-head_of_circle = Node.new(8)
-x.add_node head_of_circle
-[9,10,11,12,13].each {|val| x.add_node(Node.new(val))}
-bad_node = Node.new(14)
-x.add_node bad_node
-bad_node.next = head_of_circle
 
-answer = find_head_of_circular_list x
-p answer.value
+
+
+
