@@ -8,7 +8,7 @@ class Node
 
   def to_s
     p "Node  value: #{self.value ? value : 'no value set'}  " +
-    "next: #{self.next ? self.value : 'no next node'}"
+    "next: #{self.next ? self.next.value : 'no next node'}"
   end
 end
 
