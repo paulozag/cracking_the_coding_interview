@@ -36,7 +36,7 @@ LinkedList.prototype.remove = function(value){
   if(!node){
     return null;
   };
-  return deleteNode(node);
+  return this.deleteNode(node);
 };
 
 LinkedList.prototype.viewList = function(){
@@ -55,7 +55,22 @@ LinkedList.prototype.viewList = function(){
 
 LinkedList.prototype.isEmpty = function(){
   return !this.head;
-}
+};
+
+LinkedList.prototype.length = function(){
+  var runner  = this.head;
+  var count   = 0;
+
+  while (runner){
+    count++;
+    runner = runner.next;
+  }
+  return count;
+};
+
+LinkedList.prototype.count = function(){
+  return this.length();
+};
 
 
 // ********** HELPERS **********
@@ -72,34 +87,51 @@ LinkedList.prototype.findNodeByValue = function(value){
 };
 
 LinkedList.prototype.deleteNode = function(node){
-  if(this.isSingleton){
-    return deleteSingleton();
+  if(this.isSingleton()){
+    return this.deleteSingleton();
   };
 
   if(this.tail == node){
-    return deleteTail();
+    return this.deleteTail(this);
   }
 
-  return deleteNonTailNode(node);
+  return this.deleteNonTailNode(node);
 };
 
 LinkedList.prototype.deleteNonTailNode = function(node){
+  // if node.next = tail?
   var returnValue = node.value;
+  if (this.tail == node.next){
+    this.tail = node;
+  }
   node.value  = node.next.value;
   node.next   = node.next.next;
   return returnValue;
 };
 
 LinkedList.prototype.deleteFromList = function(deletionMode){
-
+  // debugger
   if(!this.head){
     return null;
   }
   if(this.isSingleton()){
-    return deleteSingleton();
+    return this.deleteSingleton();
   } else {
     return deletionMode(this);
   }
+};
+
+LinkedList.prototype.deleteTail = function(reference){
+  var runnersParent = reference.head;
+  var runner = reference.head.next;
+  var returnValue;
+  while(runner.next){
+    runner = runner.next;
+    runnersParent = runnersParent.next;
+  };
+  reference.tail = runnersParent;
+  reference.tail.next = null;
+  return runner.value;
 };
 
 LinkedList.prototype.deleteHead = function(reference){
@@ -117,19 +149,7 @@ LinkedList.prototype.deleteSingleton = function(){
   this.head = null;
   this.tail = null;
   return returnValue;
-}
-
-LinkedList.prototype.deleteTail = function(reference){
-  var runnersParent = reference.head;
-  var runner = reference.head.next;
-  var returnValue;
-  while(runner.next){
-    runner = runner.next;
-    runnersParent = runnersParent.next;
-  };
-  this.tail = runnersParent;
-  return runner.value;
-}
+};
 
 LinkedList.prototype.enterNodeIntoEmptyList = function(newNode){
   this.head = newNode;
@@ -140,19 +160,14 @@ LinkedList.prototype.generateNewNode = function(value){
   return new Node(value)
 };
 
-
 var x = new LinkedList;
-x.push(5);
-x.enqueue(4);
-x.push(6)
-console.log('head of list: ' + x.head.value)
-console.log('tail of list: ' + x.tail.value)
-console.log('--------------------------------------');
-x.viewList()
-console.log('pop list value: ', x.pop());
-console.log('dequeue list value: ' + x.dequeue());
-// var list = new LinkedList(new Node(1))
-// var x = [2,3,4,5,5,4,3,2,1]
-// for (var index = 0; index < x.length; index++){
-//   list.addNode(new Node(x[index]))
-// }
+for (value of [1,2,3]){
+  x.push(value)
+};
+x.viewList();
+x.remove(1);
+console.log("removed 1");
+console.log('head == tail ? :', x.head == x.tail)
+console.log('***********************************');
+x.viewList();
+console.log('count: ', x.length())
