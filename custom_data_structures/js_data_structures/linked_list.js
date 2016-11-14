@@ -160,14 +160,6 @@ LinkedList.prototype.generateNewNode = function(value){
   return new Node(value)
 };
 
-var x = new LinkedList;
-for (value of [1,2,3]){
-  x.push(value)
-};
-x.viewList();
-x.remove(1);
-console.log("removed 1");
-console.log('head == tail ? :', x.head == x.tail)
-console.log('***********************************');
-x.viewList();
-console.log('count: ', x.length())
+
+
+

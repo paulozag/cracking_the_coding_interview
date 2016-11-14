@@ -28,3 +28,5 @@ var findAndRemoveDups = function(targetNode, classInstance){
     runner = runner.next
   }
 }
+
+console.log("connected")
