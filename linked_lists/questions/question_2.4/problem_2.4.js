@@ -12,7 +12,6 @@ var partitionLinkedList = function(list, target){
     runner = runner.next
   }
 
-  // debugger
   if (smallList.head){
     smallList.tail.next = bigList.head;
     return smallList;
@@ -20,5 +19,4 @@ var partitionLinkedList = function(list, target){
     return bigList;
   }
 }
-
 
