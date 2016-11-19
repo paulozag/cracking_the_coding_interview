@@ -5,6 +5,17 @@ I thought it would be interesting to refactor and add the ability to
 take in an array of lists of dynamic length.  I stored the carry variable
 as a single element array so i could pass the carry value by reference
 rather than value.  There is probably a more elegant/clearer way to do this.
+
+as far as how i'd hancle the logic for list representations of arabic numbers
+in the opposite order, a couple ideas:
+  1) create a helper method reverseList that would enqueue each original list element into a new list, then run those new lists through the current algorithm.
+  i would then run the resutlt through the reverseList helper as a final result.
+  time and space complexity would roughly double.
+  2) I could employ a recursive solution to run to the bottom of the longest list.
+  then build the sum list from the bottom up.  lists of different length might
+  cause some trickiness.  this soulution would sovle in O(n) time and almost
+  constant space, as long as i passed as much as possible by reference.  might
+  be an interesting algorithm to try someday.
 */
 
 var linkedListAdder = function(lists){
