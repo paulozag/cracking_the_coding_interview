@@ -1,8 +1,11 @@
+// ***************************************************
+//  hardcodes for two lists
+// ***************************************************
 var linkedListAdder = function(list1, list2){
   var adderProperties = {
                     runner1:  list1.head,
                     runner2:  list2.head,
-                    runnerKeys: ['runner1', 'runner2']
+                    runnerKeys: ['runner1', 'runner2'],
                     carry:    0
   }
   var sum   = new LinkedList();
@@ -10,6 +13,7 @@ var linkedListAdder = function(list1, list2){
   while ( stepsOfAdditionStillRemaining(adderProperties) ){
     sum.push(processAddition(adderProperties));
   }
+  return sum;
 }
 
 var stepsOfAdditionStillRemaining = function(runnerVals){
