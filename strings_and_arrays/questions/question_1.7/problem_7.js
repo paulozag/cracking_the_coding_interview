@@ -25,10 +25,6 @@ var zeroOut = function(matrix){
 
   setRowAndColFlags(matrix, rowFlags, colFlags)
   processRowAndColFlags(matrix, rowFlags, colFlags)
-
-  console.log('rowFlags: ' + rowFlags)
-  console.log('colFlags: ' + colFlags)
-
 }
 
 var setRowAndColFlags = function(arr, rowFlags, colFlags){
