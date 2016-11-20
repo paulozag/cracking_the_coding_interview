@@ -1,10 +1,10 @@
 var reverse = function(word){
   var result = [];
-  var word_length = word.length
+  var word_length = word.length;
 
-  for (var index = 0; index < word_length; index++){
-    var rev_array_index = word_length - 1 - index
-    result[rev_array_index] = word[index]
+  for (var index in word){
+    var rev_array_index = word_length - 1 - index;
+    result.push(word[rev_array_index]);
   }
 
   return result.join('')
