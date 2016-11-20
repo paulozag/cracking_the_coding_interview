@@ -1,22 +1,24 @@
-def string_compressor expr
-  new_expr = []
-  prev_char = ''
-  count = 0
-  while count < expr.length
-    next_char = expr[count]
-    if next_char == prev_char
-      new_expr[-1] += 1
+def str_compress(string)
+  return string if string.empty?
+  compressed_array  = []
+  string_array      = string.split('')
+  current_char      = string_array[0]
+  count             = 1
+  compressed_array.push(current_char)
+
+  (1...string.length).each do |index|
+    if string_array[index] == current_char
+      count += 1
     else
-      prev_char = next_char
-      new_expr << next_char
-      new_expr << 1
+      compressed_array.push(count.to_s)
+      count = 1
+      current_char = string_array[index]
+      compressed_array.push(current_char)
     end
-    count += 1
   end
-  new_string = new_expr.join('')
-  new_string.length < expr.length ? new_string : expr
+  compressed_array.push(count.to_s)
+  string.length < compressed_array.length ? string : compressed_array.join('')
 end
 
-
-p string_compressor 'aababababbbbbtbttttbybuuuuq'
-p string_compressor 'aaaaaabbbbbbbcbbbbbbb'
+p str_compress('hello')
+p str_compress('aaaaaaabbbbbbbbbbcddddddde')
