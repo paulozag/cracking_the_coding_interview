@@ -1,19 +1,13 @@
 var uniqueChars = function(word){
   var histo = {}
-  for (index = 0; index < word.length; index++){
+  for (var index in word){
     if (histo[word[index]]){
-      histo[word[index]]++
-    } else {
-      histo[word[index]] = 1
-    }
-  }
-
-  for (property in histo){
-    if(histo[property] > 1){
       return false;
+    } else {
+      histo[word[index]] = true;
     }
-    return true;
   }
+  return true;
 };
 
 console.log(uniqueChars('hello'));
