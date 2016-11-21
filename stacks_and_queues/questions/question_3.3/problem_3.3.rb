@@ -18,22 +18,22 @@ class Stack
   end
 
   def pop
-    return nil unless top
-    pop_result = top.value
-    @top = top.next
+    return nil unless @top
+    pop_result = @top.value
+    @top = @top.next
     @count -= 1
     pop_result
   end
 
   def push item
     item = Node.new(item)
-    item.next = top
+    item.next = @top
     @top = item
     @count += 1
   end
 
   def peek
-    top.value
+    @top.value
   end
 
   def maxxed?
@@ -63,7 +63,7 @@ class StackOfStacks
       @stacks << Stack.new(item)
       @last_stack = @stacks.last
     else
-      @last_stack.push item
+      @last_stack.push(item)
     end
   end
 
@@ -84,7 +84,7 @@ class StackOfStacks
   def pop_at index
     return nil if @stacks.size <= index
     pop_result = @stacks[index].pop
-    rebalance index
+    rebalance(index)
     pop_result
   end
 
@@ -92,15 +92,9 @@ class StackOfStacks
   def rebalance index
     return if index == ((@stacks.length) -1)
     while @stacks[index + 1]
-      @stacks[index].push @stacks[index + 1].pop
+      @stacks[index].push(@stacks[index + 1].pop)
       index += 1
     end
   end
 
 end
-
-stack = StackOfStacks.new 1
-(2..38).to_a.each {|num| stack.push num}
-# p stack.stacks.last.count
-stack.pop_at 2
-stack.stacks.each {|stack| p stack.count}
