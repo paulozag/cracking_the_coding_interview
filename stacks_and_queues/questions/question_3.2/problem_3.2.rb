@@ -13,9 +13,12 @@ class Stack
   attr_accessor :top
 
   def initialize top=nil
-    @top = Node.new top
-    @top.prev_min = @top.value
-    @min = top
+    if top
+      @top = Node.new top
+      @top.prev_min = @top.value
+      @min = top
+    end
+
   end
 
   def pop
@@ -23,6 +26,7 @@ class Stack
     pop_result = @top.value
     @min = @top.prev_min if @top.value < @top.prev_min
     @top = @top.next
+    @min = nil unless @top
     pop_result
   end
 

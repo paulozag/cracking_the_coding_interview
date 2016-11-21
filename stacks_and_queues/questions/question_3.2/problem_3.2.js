@@ -1,10 +1,10 @@
 var Node = function(value){
-  timer = Date.now()
+  timer = Date.now();
   while (Date.now() === timer){}
-  this.value = value
-  this.id = Date.now()
-  this.next = null
-  this.prev_min = null
+  this.value = value;
+  this.id = Date.now();
+  this.next = null;
+  this.prev_min = null;
 };
 
 var Stack = function(value){
@@ -18,12 +18,15 @@ var Stack = function(value){
 };
 
 Stack.prototype.pop = function(){
-  if (!this.top) {return null}
-  result = this.top.value
+  if (!this.top) {return null;}
+  result = this.top.value;
   if (this.top.prev_min > result){
-    this.min = this.top.prev_min
+    this.min = this.top.prev_min;
   }
-  this.top = this.top.next
+  this.top = this.top.next;
+  if (!this.top){
+    this.min = null;
+  }
   return result
 }
 
