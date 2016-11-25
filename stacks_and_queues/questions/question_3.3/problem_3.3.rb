@@ -1,57 +1,62 @@
-class Node
-  attr_accessor :value, :next
+# class Node
+#   attr_accessor :value, :next
 
-  def initialize value=nil
-    @value = value
-    @next = nil
-  end
-end
+#   def initialize value=nil
+#     @value = value
+#     @next = nil
+#   end
+# end
 
-class Stack
+require_relative './../../../custom_data_structures/ruby_data_structures/linked_list.rb'
 
-  attr_accessor :top, :count
+# class Stack
 
-  def initialize top, stack_max=5
-    @top = Node.new top
-    @count = 1
-    @stack_max = stack_max
-  end
+#   attr_accessor :top, :count
 
-  def pop
-    return nil unless @top
-    pop_result = @top.value
-    @top = @top.next
-    @count -= 1
-    pop_result
-  end
+#   def initialize top, stack_max=5
+#     @top = Node.new top
+#     @count = 1
+#     @stack_max = stack_max
+#   end
 
-  def push item
-    item = Node.new(item)
-    item.next = @top
-    @top = item
-    @count += 1
-  end
+#   def pop
+#     return nil unless @top
+#     pop_result = @top.value
+#     @top = @top.next
+#     @count -= 1
+#     pop_result
+#   end
 
-  def peek
-    @top.value
-  end
+#   def push item
+#     item = Node.new(item)
+#     item.next = @top
+#     @top = item
+#     @count += 1
+#   end
 
-  def maxxed?
-    @count >= @stack_max
-  end
+#   def peek
+#     @top.value
+#   end
 
-  def empty?
-    @count == 0
-  end
-end
+#   def maxxed?
+#     @count >= @stack_max
+#   end
+
+#   def empty?
+#     @count == 0
+#   end
+# end
 
 class StackOfStacks
 
   attr_reader :stacks
 
-  def initialize value
-    @stacks = [Stack.new(value)]
-    @last_stack = @stacks.first
+  def initialize value=nil
+    if value
+      @stacks = [Stack.new(value)]
+      @last_stack = @stacks.first
+    end
+
   end
 
   def push item
@@ -88,6 +93,13 @@ class StackOfStacks
     pop_result
   end
 
+  def view_stack
+    @stacks.each do |stack|
+      stack.view_list
+    end
+
+  end
+
   private
   def rebalance index
     return if index == ((@stacks.length) -1)
@@ -98,3 +110,13 @@ class StackOfStacks
   end
 
 end
+
+stack = StackOfStacks.new
+
+(1..25).each do  |value|
+  stack = StackOfStacks.new
+end
+
+stack.view_stack
+
+
