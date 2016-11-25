@@ -1,84 +1,58 @@
-# class Node
-#   attr_accessor :value, :next
 
-#   def initialize value=nil
-#     @value = value
-#     @next = nil
-#   end
-# end
 
-require_relative './../../../custom_data_structures/ruby_data_structures/linked_list.rb'
+require 'pry-byebug'
+require_relative './../../../custom_data_structures/ruby_data_structures/stack.rb'
 
-# class Stack
+class Stack
 
-#   attr_accessor :top, :count
+  def empty?
+    !@top
+  end
 
-#   def initialize top, stack_max=5
-#     @top = Node.new top
-#     @count = 1
-#     @stack_max = stack_max
-#   end
+  def <<(value)
+    self.push(value)
+  end
 
-#   def pop
-#     return nil unless @top
-#     pop_result = @top.value
-#     @top = @top.next
-#     @count -= 1
-#     pop_result
-#   end
+  def last
+    return nil unless @top
+    runner = @top
+    while (runner.next)
+      runner = runner.next
+    end
+    runner
+  end
 
-#   def push item
-#     item = Node.new(item)
-#     item.next = @top
-#     @top = item
-#     @count += 1
-#   end
-
-#   def peek
-#     @top.value
-#   end
-
-#   def maxxed?
-#     @count >= @stack_max
-#   end
-
-#   def empty?
-#     @count == 0
-#   end
-# end
+end
 
 class StackOfStacks
 
   attr_reader :stacks
+  MAX_STACK_SIZE = 5
 
   def initialize value=nil
-    if value
-      @stacks = [Stack.new(value)]
-      @last_stack = @stacks.first
-    end
 
+    @stacks = Stack.new(Stack.new)
+
+    if value
+      @stacks.top.value.push(value)
+    end
   end
 
   def push item
-    if @stacks.empty?
+    if @stacks.top  && @stacks.top.value.empty?
       @stacks << Stack.new(item)
-      @last_stack = @stacks.last
     end
-    if @last_stack.maxxed?
+    if self.maxxed?(@stacks.top.value)
       @stacks << Stack.new(item)
-      @last_stack = @stacks.last
     else
-      @last_stack.push(item)
+      @stacks.top.value.push(item)
     end
   end
 
   def pop
     return nil unless @stacks.any?
-    result = @last_stack.pop
-    if @last_stack.empty?
-      @stacks.pop
-      @last_stack = @stacks.last
-    end
+    result = @stacks.last.pop
+    @stacks.pop if @stacks.last.empty?
     result
   end
 
@@ -94,19 +68,35 @@ class StackOfStacks
   end
 
   def view_stack
-    @stacks.each do |stack|
-      stack.view_list
+    runner = @stacks.top
+    while(runner)
+      runner.value.view_stack
+      runner = runner.next
     end
+  end
 
+  def maxxed?(stack)
+    stack.length == MAX_STACK_SIZE
   end
 
   private
   def rebalance index
     return if index == ((@stacks.length) -1)
-    while @stacks[index + 1]
-      @stacks[index].push(@stacks[index + 1].pop)
-      index += 1
+    # while @stacks[index + 1]
+    #   @stacks[index].push(@stacks[index + 1].pop)
+    #   index += 1
+    # end
+
+    while @stacks[index+1]
+      if self.maxxed?(@stacks[index])
+        index += 1
+      else
+        @stacks[index].push(@stacks[index+1].pop)
+      end
     end
+
+
+
   end
 
 end
@@ -114,9 +104,19 @@ end
 stack = StackOfStacks.new
 
 (1..25).each do  |value|
-  stack = StackOfStacks.new
+  stack.push value
 end
 
 stack.view_stack
+# p "-------------------------------------------------"
+# p "popping 3rd stack value: #{stack.pop_at(3)}"
+# p "length of stack[3] #{stack.stacks[3].length}"
+# p "-------------------------------------------------"
+# p "popping 3rd stack value: #{stack.pop_at(3)}"
+# p "length of stack[3] #{stack.stacks[3].length}"
+# p "-------------------------------------------------"
+# p "popping 3rd stack value: #{stack.pop_at(3)}"
+# p "length of stack[3] #{stack.stacks[3].length}"
+
 
 

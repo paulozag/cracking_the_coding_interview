@@ -27,6 +27,20 @@ class Stack
     top.value
   end
 
+  def length
+    count = 0
+    runner = @top
+    while(runner)
+      count += 1
+      runner = runner.next
+    end
+    count
+  end
+
+  def size
+    self.length
+  end
+
   def view_stack
     runner = @top
     while(runner)
@@ -36,19 +50,7 @@ class Stack
   end
 end
 
-x = Stack.new
-x.push 1
-x.push 2
-x.push 3
-x.push 4
 
 
-y = Stack.new(4)
-y.push 1
-y.push 2
-y.push 3
 
-p "contents of x"
-x.view_stack
-p "_________________________"
-y.view_stack
+
